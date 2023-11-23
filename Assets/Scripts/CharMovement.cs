@@ -16,7 +16,6 @@ public class CharMovement : MonoBehaviour
     void Start()
     {
         groundLayer = LayerMask.GetMask("Ground");
-        Debug.Log(groundLayer);
     }
 
     void Update()
