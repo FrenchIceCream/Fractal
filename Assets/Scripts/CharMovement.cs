@@ -20,11 +20,11 @@ public class CharMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(rbody.velocity.y);
 
+        
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsStanding())
             rbody.velocity = new Vector2(rbody.velocity.x, jumpingPower);
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && rbody.velocity.y > 0f)
@@ -45,6 +45,7 @@ public class CharMovement : MonoBehaviour
 
     private bool IsStanding()
     {
+        //в теории возможен двойной прыжок, но если ты сможешь это обузить, то ты это заслужил
         return rbody.velocity.y == 0f;
     }
 
