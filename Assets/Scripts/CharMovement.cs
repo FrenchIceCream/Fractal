@@ -25,11 +25,11 @@ public class CharMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
-            rbody.velocity = new Vector2(rbody.velocity.x, jumpingPower);
-
+            rbody.velocity = Vector2.up * jumpingPower;
+/*
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && rbody.velocity.y > 0f)
             rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y * 0.5f);
-
+*/
         ChangeDir();
     }
 
