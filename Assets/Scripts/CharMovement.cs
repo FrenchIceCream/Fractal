@@ -20,6 +20,8 @@ public class CharMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(rbody.velocity.y);
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
@@ -39,6 +41,11 @@ public class CharMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private bool IsStanding()
+    {
+        return rbody.velocity.y == 0f;
     }
 
     private void ChangeDir()
