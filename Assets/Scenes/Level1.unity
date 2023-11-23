@@ -860,6 +860,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 7550132583672105089, guid: d965065c496f47f45834c36a933b2c22, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550132583672105089, guid: d965065c496f47f45834c36a933b2c22, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -876,6 +884,10 @@ PrefabInstance:
     - target: {fileID: 5231502910208012018, guid: cd31461a465829d42949537c66a0f252, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568592682199944500, guid: cd31461a465829d42949537c66a0f252, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6839840576481090452, guid: cd31461a465829d42949537c66a0f252, type: 3}
       propertyPath: m_LocalPosition.x

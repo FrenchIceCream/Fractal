@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 public class GrabBox : MonoBehaviour
@@ -9,6 +10,7 @@ public class GrabBox : MonoBehaviour
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDist;
+    [SerializeField] private BoxCollider2D handCollider2D;
 
     private CharMovement charMovement;
     private int boxLayer;
@@ -36,6 +38,8 @@ public class GrabBox : MonoBehaviour
                 {
                     box = hitInfo.collider.gameObject;
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
+                    box.GetComponent<BoxCollider2D>().enabled = false;
+                    handCollider2D.enabled = true;
                     box.transform.position = grabPoint.position;
                     box.transform.rotation = new Quaternion(0,0,0,0);
                     box.transform.SetParent(transform);
@@ -43,6 +47,9 @@ public class GrabBox : MonoBehaviour
                 else 
                 {
                     box.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
+                    handCollider2D.enabled = false;
+                    box.GetComponent<BoxCollider2D>().enabled = true;
+
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.transform.SetParent(null);
                     box = null;

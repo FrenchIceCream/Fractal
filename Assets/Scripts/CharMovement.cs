@@ -10,6 +10,7 @@ public class CharMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform groundCheck2;
     [SerializeField] private float jumpingPower;
 
     private LayerMask groundLayer;
@@ -21,11 +22,9 @@ public class CharMovement : MonoBehaviour
 
     void Update()
     {
-
-        
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsStanding())
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
             rbody.velocity = new Vector2(rbody.velocity.x, jumpingPower);
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && rbody.velocity.y > 0f)
@@ -41,7 +40,8 @@ public class CharMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapArea(new Vector2(groundCheck.position.x, groundCheck.position.y),
+            new Vector2(groundCheck2.position.x, groundCheck2.position.y));
     }
 
     private bool IsStanding()
