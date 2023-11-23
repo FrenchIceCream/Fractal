@@ -7,6 +7,7 @@ public class CharMovement : MonoBehaviour
     private float horizontal;
     private float speed = 20f;
     private bool isFacingRight = true;
+    private Animator animator;
 
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private Transform groundCheck;
@@ -22,7 +23,10 @@ public class CharMovement : MonoBehaviour
 
     void Update()
     {
+        animator = GetComponent<Animator>();
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
             rbody.velocity = Vector2.up * jumpingPower;
