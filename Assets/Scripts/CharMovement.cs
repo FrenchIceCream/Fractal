@@ -6,11 +6,12 @@ public class CharMovement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 20f;
-    private float jumpingPower = 30f;
     private bool isFacingRight = true;
 
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private float jumpingPower;
+
     private LayerMask groundLayer;
 
     void Start()
