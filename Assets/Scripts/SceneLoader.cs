@@ -35,4 +35,11 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+
+    public void NextLevel()
+    {
+        Time.timeScale = 1;
+        
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1)%SceneManager.sceneCountInBuildSettings);
+    }
 }
