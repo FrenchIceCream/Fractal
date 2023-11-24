@@ -27,6 +27,7 @@ public class CharMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
 
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        animator.SetBool("IsJumping", !IsGrounded());
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
             rbody.velocity = Vector2.up * jumpingPower;
