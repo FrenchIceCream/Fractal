@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,39 +10,48 @@ public class CharMovement : MonoBehaviour
     private bool isFacingRight = true;
     private Animator animator;
 
+    private Vector2 jumpVector;
+
+    private readonly float G = 9.81f;
+
+
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform groundCheck2;
     [SerializeField] private float jumpingPower;
+    [SerializeField] private GravityVector gravityVectorType;
 
-    private LayerMask groundLayer;
 
     void Start()
     {
+        RotateModel();
+        Debug.Log(rbody.totalTorque);
+        jumpVector = GetJumpVector();
+        rbody.gravityScale = 0;
+        GetComponent<ConstantForce2D>().force = GetGravity();
         animator = GetComponent<Animator>();
-        groundLayer = LayerMask.GetMask("Ground");
     }
 
     void Update()
+    {
+        Movement();
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
+            rbody.velocity = jumpVector;
+
+        ChangeDir();
+    }
+
+    private void Movement()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         animator.SetBool("IsJumping", !IsGrounded());
-
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
-            rbody.velocity = Vector2.up * jumpingPower;
-
-/*
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && rbody.velocity.y > 0f)
-            rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y * 0.5f);
-*/
-        ChangeDir();
     }
 
     private void FixedUpdate()
     {
-        rbody.velocity = new Vector2(horizontal * speed, rbody.velocity.y);
+        rbody.velocity = GetFixedUpdate();
     }
 
     private bool IsGrounded()
@@ -50,10 +60,73 @@ public class CharMovement : MonoBehaviour
             new Vector2(groundCheck2.position.x, groundCheck2.position.y));
     }
 
-    private bool IsStanding()
+    private Vector2 GetGravity()
     {
-        //в теории возможен двойной прыжок, но если ты сможешь это обузить, то ты это заслужил
-        return rbody.velocity.y == 0f;
+        switch (gravityVectorType)
+        {
+            case GravityVector.Down:
+                return Vector2.down * G * rbody.mass * 3;
+            case GravityVector.Up:
+                return Vector2.up * G * rbody.mass * 3;
+            case GravityVector.Left:
+                return new Vector2(-rbody.mass * Physics2D.gravity.magnitude, 0) * 3f;
+            case GravityVector.Right:
+                return Vector2.right * G * rbody.mass * 3;
+        }
+
+        return Vector2.zero;
+    }
+
+    private Vector2 GetJumpVector()
+    {
+        switch (gravityVectorType)
+        {
+            case GravityVector.Down:
+                return Vector2.up * jumpingPower;
+            case GravityVector.Up:
+                return Vector2.down * jumpingPower;
+            case GravityVector.Left:
+                return Vector2.right * jumpingPower;
+            case GravityVector.Right:
+                return Vector2.left * jumpingPower;
+        }
+
+        return Vector2.zero;
+    }
+
+    private Vector2 GetFixedUpdate()
+    {
+        switch (gravityVectorType)
+        {
+            case GravityVector.Down:
+                return new Vector2(horizontal * speed, rbody.velocity.y);
+            case GravityVector.Up:
+                return new Vector2(-horizontal * speed, rbody.velocity.y);
+            case GravityVector.Left:
+                return new Vector2(rbody.velocity.x, -horizontal * speed);
+            case GravityVector.Right:
+                return new Vector2(rbody.velocity.x, horizontal * speed);
+        }
+
+        return Vector2.zero;
+    }
+
+    private void RotateModel()
+    {
+        switch (gravityVectorType)
+        {
+            case GravityVector.Down:
+                return;
+            case GravityVector.Up:
+                transform.Rotate(Vector3.forward, 180f);
+                return;
+            case GravityVector.Left:
+                transform.Rotate(Vector3.forward, -90f);
+                return;
+            case GravityVector.Right:
+                transform.Rotate(Vector3.forward, 90f);
+                return;
+        }
     }
 
     private void ChangeDir()
@@ -72,5 +145,13 @@ public class CharMovement : MonoBehaviour
         if (isFacingRight)
             return 1;
         return -1;
+    }
+
+    enum GravityVector
+    {
+        Down,
+        Up,
+        Left,
+        Right
     }
 }

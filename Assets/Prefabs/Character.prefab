@@ -198,9 +198,9 @@ GameObject:
   - component: {fileID: 6568592682199944500}
   - component: {fileID: 4045633759402785765}
   - component: {fileID: 466217707874099169}
-  - component: {fileID: 1980374324050190976}
   - component: {fileID: 6936076509403640804}
   - component: {fileID: 8017693081088804324}
+  - component: {fileID: 4384403757662065406}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -294,7 +294,7 @@ Rigidbody2D:
   m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 830ab587636e6034384286d81593c568, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -322,6 +322,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6188661476742512024}
   groundCheck2: {fileID: 6926065326510543390}
   jumpingPower: 25
+  gravityVectorType: 0
 --- !u!114 &466217707874099169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,51 +339,6 @@ MonoBehaviour:
   rayPoint: {fileID: 1024309786953114993}
   rayDist: 5
   handCollider2D: {fileID: 830004883004814241}
---- !u!61 &1980374324050190976
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5231502910208012018}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 830ab587636e6034384286d81593c568, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.20368147, y: -0.11648321}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.666667, y: 10.666667}
-    newSize: {x: 10.24, y: 10.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.1745176, y: 10.472966}
-  m_EdgeRadius: 0
 --- !u!95 &6936076509403640804
 Animator:
   serializedVersion: 5
@@ -439,6 +395,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0.15072107, y: -0.18086529}
   m_Size: {x: 4.4569616, y: 10.304937}
   m_Direction: 0
+--- !u!247 &4384403757662065406
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231502910208012018}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &8745416835945625085
 GameObject:
   m_ObjectHideFlags: 0
