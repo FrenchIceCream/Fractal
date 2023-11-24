@@ -15,17 +15,20 @@ public class GrabBox : MonoBehaviour
     private CharMovement charMovement;
     private int boxLayer;
     private GameObject box;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         boxLayer = LayerMask.NameToLayer("Box");
         charMovement = GetComponent<CharMovement>();
+        animator = charMovement.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("HasBox", handCollider2D.enabled);
         RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right * charMovement.GetDirection(), rayDist);
 
         if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == boxLayer)
