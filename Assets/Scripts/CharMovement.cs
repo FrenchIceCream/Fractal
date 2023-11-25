@@ -25,7 +25,7 @@ public class CharMovement : MonoBehaviour
     void Start()
     {
         RotateModel();
-        Debug.Log(rbody.totalTorque);
+        //Debug.Log(rbody.totalTorque);
         jumpVector = GetJumpVector();
         rbody.gravityScale = 0;
         GetComponent<ConstantForce2D>().force = GetGravity();

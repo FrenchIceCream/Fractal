@@ -36,29 +36,37 @@ public class GrabBox : MonoBehaviour
 
         if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == boxLayer)
         {
-            //Debug.Log("HIT SOMETHING: " + hitInfo.collider.gameObject.layer.ToString());
+            //Debug.Log("HIT SOMETHING: " + hitInfo.collider.gameObject.name.ToString());
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("PRESSED E");
+                //Debug.Log("PRESSED E");
                 if (box == null)
                 {
                     box = hitInfo.collider.gameObject;
-                    box.GetComponent<Rigidbody2D>().isKinematic = true;
+                    var box_rbody = box.GetComponent<Rigidbody2D>();
+                    if (box_rbody == null)
+                    {
+                        box = null;
+                        return;
+                    }
+                    //Debug.Log(charMovement.name + " grabbed box");
+                    box_rbody.isKinematic = true;
                     box.GetComponent<BoxCollider2D>().enabled = false;
                     box.layer = 0;
                     handCollider2D.enabled = true;
                     box.transform.position = grabPoint.position;
-                    box.transform.rotation = new Quaternion(0, 0, 0, 0);
                     box.transform.SetParent(transform);
                     box.GetComponent<BoxGravityController>().RotateBox(gravityVector);
                 }
                 else
                 {
-                    box.layer = boxLayer;
+                    //Debug.Log(charMovement.name + "released box");
                     box.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
+                    
                     handCollider2D.enabled = false;
+                    box.layer = boxLayer;
                     box.GetComponent<BoxCollider2D>().enabled = true;
-
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.transform.SetParent(null);
                     box = null;
@@ -68,6 +76,4 @@ public class GrabBox : MonoBehaviour
 
         Debug.DrawRay(rayPoint.position, transform.right * charMovement.GetDirection() * rayDist);
     }
-
-    
 }
