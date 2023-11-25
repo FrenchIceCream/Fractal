@@ -16,6 +16,7 @@ public class GrabBox : MonoBehaviour
     private int boxLayer;
     private GameObject box;
     private Animator animator;
+    private GravityVector gravityVector;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +24,15 @@ public class GrabBox : MonoBehaviour
         boxLayer = LayerMask.NameToLayer("Box");
         charMovement = GetComponent<CharMovement>();
         animator = charMovement.GetComponent<Animator>();
+        gravityVector = GetComponent<CharMovement>().gravityVectorType;
     }
 
     // Update is called once per frame
     void Update()
     {
         animator.SetBool("HasBox", handCollider2D.enabled);
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right * charMovement.GetDirection(), rayDist);
+        RaycastHit2D hitInfo =
+            Physics2D.Raycast(rayPoint.position, transform.right * charMovement.GetDirection(), rayDist);
 
         if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == boxLayer)
         {
@@ -44,10 +47,11 @@ public class GrabBox : MonoBehaviour
                     box.GetComponent<BoxCollider2D>().enabled = false;
                     handCollider2D.enabled = true;
                     box.transform.position = grabPoint.position;
-                    box.transform.rotation = new Quaternion(0,0,0,0);
+                    box.transform.rotation = new Quaternion(0, 0, 0, 0);
                     box.transform.SetParent(transform);
+                    box.GetComponent<BoxGravityController>().RotateBox(gravityVector);
                 }
-                else 
+                else
                 {
                     box.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
                     handCollider2D.enabled = false;
@@ -62,4 +66,6 @@ public class GrabBox : MonoBehaviour
 
         Debug.DrawRay(rayPoint.position, transform.right * charMovement.GetDirection() * rayDist);
     }
+
+    
 }

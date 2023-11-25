@@ -19,7 +19,7 @@ public class CharMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform groundCheck2;
     [SerializeField] private float jumpingPower;
-    [SerializeField] private GravityVector gravityVectorType;
+    [SerializeField] public GravityVector gravityVectorType;
 
 
     void Start()
@@ -69,7 +69,7 @@ public class CharMovement : MonoBehaviour
             case GravityVector.Up:
                 return Vector2.up * G * rbody.mass * 3;
             case GravityVector.Left:
-                return new Vector2(-rbody.mass * Physics2D.gravity.magnitude, 0) * 3f;
+                return Vector2.left * G * rbody.mass * 3;
             case GravityVector.Right:
                 return Vector2.right * G * rbody.mass * 3;
         }
@@ -146,12 +146,13 @@ public class CharMovement : MonoBehaviour
             return 1;
         return -1;
     }
+    
+}
 
-    enum GravityVector
-    {
-        Down,
-        Up,
-        Left,
-        Right
-    }
+public enum GravityVector
+{
+    Down,
+    Up,
+    Left,
+    Right
 }
