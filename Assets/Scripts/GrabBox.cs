@@ -45,6 +45,7 @@ public class GrabBox : MonoBehaviour
                     box = hitInfo.collider.gameObject;
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
                     box.GetComponent<BoxCollider2D>().enabled = false;
+                    box.layer = 0;
                     handCollider2D.enabled = true;
                     box.transform.position = grabPoint.position;
                     box.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -53,6 +54,7 @@ public class GrabBox : MonoBehaviour
                 }
                 else
                 {
+                    box.layer = boxLayer;
                     box.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
                     handCollider2D.enabled = false;
                     box.GetComponent<BoxCollider2D>().enabled = true;

@@ -690,6 +690,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3683061738000682733, guid: 5dc8fc4b4c5dd914ab92ac574e07ba5a, type: 3}
+      propertyPath: buttonsList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683061738000682733, guid: 5dc8fc4b4c5dd914ab92ac574e07ba5a, type: 3}
+      propertyPath: buttonsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 2075750243488088845}
     - target: {fileID: 5236911054045577647, guid: 5dc8fc4b4c5dd914ab92ac574e07ba5a, type: 3}
       propertyPath: m_Name
       value: UI
@@ -902,6 +910,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82fc01db04987b142958c328beefc14a, type: 3}
+--- !u!114 &2075750243488088845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7190100807920700176, guid: 82fc01db04987b142958c328beefc14a, type: 3}
+  m_PrefabInstance: {fileID: 2075750243488088844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfa6ee3d7cb4134c908771b34583af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
