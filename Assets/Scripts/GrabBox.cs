@@ -57,7 +57,9 @@ public class GrabBox : MonoBehaviour
                     handCollider2D.enabled = true;
                     box.transform.position = grabPoint.position;
                     box.transform.SetParent(transform);
-                    box.GetComponent<BoxGravityController>().RotateBox(gravityVector);
+                    var box_gravitycontroller = box.GetComponent<BoxGravityController>();
+                    box_gravitycontroller.RotateBox(gravityVector);
+                    box_gravitycontroller.ChangeGravityVector(gravityVector);
                 }
                 else
                 {

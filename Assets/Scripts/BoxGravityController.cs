@@ -65,4 +65,46 @@ public class BoxGravityController : MonoBehaviour
         transform.Rotate(Vector3.forward, 180f);
         forse.force = Vector2.up * G * rbody.mass * 2;
     }
+
+    public void SetForce(Vector2 f)
+    {
+        forse.force = f;
+    }
+
+    public GravityVector GetOppositeGravityVector()
+    {
+        switch (gravityVector)
+        {
+            case GravityVector.Down:
+                return GravityVector.Up;
+            case GravityVector.Up:
+                return GravityVector.Down;
+            case GravityVector.Left:    
+                return  GravityVector.Right;
+            case GravityVector.Right:
+                return GravityVector.Left;
+        }
+        return GravityVector.Up;
+    }
+
+    public Vector2 GetOppositeVector2()
+    {
+        switch (gravityVector)
+        {
+            case GravityVector.Down:
+                return Vector2.up;
+            case GravityVector.Up:
+                return Vector2.down;
+            case GravityVector.Left:    
+                return  Vector2.right;
+            case GravityVector.Right:
+                return Vector2.left;
+        }
+        return Vector2.zero;
+    }
+
+    public void ChangeGravityVector(GravityVector gv)
+    {
+        gravityVector = gv;
+    }
 }
