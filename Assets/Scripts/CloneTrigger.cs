@@ -26,7 +26,7 @@ public class CloneTrigger : MonoBehaviour
         if (other.gameObject.layer == boxLayer && other.gameObject.transform.parent == null && other.GetComponent<Rigidbody2D>() != null)
         {
             Destroy(other.gameObject);
-            var newobject = Instantiate(clone, leadsTo.transform.position + 2f * leadsTo.transform.right, this.transform.parent.transform.rotation);
+            var newobject = Instantiate(clone, leadsTo.transform.position - 8f * leadsTo.transform.right, new UnityEngine.Quaternion(0,0,0,0));
             var boxgr = newobject.GetComponent<BoxGravityController>();
             boxgr.RotateBox(gravityOnAnotherEnd);
             /*ChangeConstantForce(newobject, boxgr.GetComponent<ConstantForce2D>(), gravityOnAnotherEnd, boxgr.GetComponent<Rigidbody2D>());
