@@ -9,10 +9,15 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform target;
     private Vector3 vel = Vector3.zero;
     private float damping;
+
+    [SerializeField] private Vector2 leftBottom;
+    [SerializeField] private Vector2 rightTop;
     
     private void Update()
     {
+        var newPos = new Vector3(Math.Min(Math.Max(target.transform.position.x,leftBottom.x),rightTop.x),
+            Math.Min(Math.Max(target.transform.position.y, leftBottom.y), rightTop.y),-10);
         this.transform.position = Vector3.SmoothDamp(this.transform.position,
-            new Vector3(target.transform.position.x, target.transform.position.y, -10), ref vel, damping);
+            newPos, ref vel, damping);
     }
 }
