@@ -11,7 +11,8 @@ public class BoxGravityController : MonoBehaviour
     [SerializeField] private GravityVector gravityVector;
     private float G = 9.81f;
 
-    void Start()
+    
+    void Awake()
     {
         originRotation = transform.rotation;
         forse = GetComponent<ConstantForce2D>();
@@ -22,6 +23,7 @@ public class BoxGravityController : MonoBehaviour
 
     public void RotateBox(GravityVector gravityVector)
     {
+        this.gravityVector = gravityVector;
         switch (gravityVector)
         {
             case GravityVector.Down:
