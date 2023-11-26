@@ -10,11 +10,8 @@ public class CameraFollow : MonoBehaviour
     private Vector3 vel = Vector3.zero;
     private float damping;
     
-    private void FixedUpdate()
+    private void Update()
     {
-
-
-
         this.transform.position = Vector3.SmoothDamp(this.transform.position,
             new Vector3(target.transform.position.x, target.transform.position.y, -10), ref vel, damping);
     }
