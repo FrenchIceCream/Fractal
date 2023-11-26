@@ -10,7 +10,6 @@ public class PressGravity : MonoBehaviour
     private GameObject parent;
     private Vector3 startPos;
     private Vector3 targetPos;
-    //private bool isGravityOn;
 
     [SerializeField] private List<BoxGravityController> BoxesList;
     private float speed = 10f;
