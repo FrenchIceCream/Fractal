@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 286716088}
-  leftBottom: {x: -3.6, y: -52}
+  leftBottom: {x: -3.6, y: -49}
   rightTop: {x: -3.6, y: 30.2}
 --- !u!1001 &588173004
 PrefabInstance:

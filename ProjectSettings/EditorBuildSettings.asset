@@ -24,6 +24,42 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5.unity
     guid: ebc68c4bd640b5a4288140c4b4cc9290
   - enabled: 1
+    path: Assets/Scenes/Level7.unity
+    guid: af7779608f32c9e408b0c23d3c9d90ee
+  - enabled: 1
+    path: Assets/Scenes/GravTes1.unity
+    guid: 7a881d047d55e6f40a63c75847ad2e69
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: af3da613d2fb67a4b95a3a6a05817d43
+  - enabled: 1
+    path: Assets/Scenes/GravTest2.unity
+    guid: 9331aa1b54a3ae44a88a97d158c7e1b1
+  - enabled: 1
+    path: Assets/Scenes/GravTest3.unity
+    guid: 765b8da4acbc1e24daf854d1519970d9
+  - enabled: 1
+    path: Assets/Scenes/Test1.unity
+    guid: 9e640aaa89296fe40bb80230d40c1640
+  - enabled: 1
+    path: Assets/Scenes/GravTest4.unity
+    guid: ce39f2bcc79f40c4e8e842e750409018
+  - enabled: 1
+    path: Assets/Scenes/GravTest5.unity
+    guid: 895e4249c2ec6464f81ad7884de115cd
+  - enabled: 1
+    path: Assets/Scenes/GravTest6.unity
+    guid: f2fc09e3d1bf9a64480c543d101564d2
+  - enabled: 1
     path: Assets/Scenes/pre final.unity
     guid: 7cb0e38146241424090c4a4b0cb6895c
+  - enabled: 1
+    path: Assets/Scenes/finalLevel.unity
+    guid: f3520887ca4274847a7985cb35c2fa84
+  - enabled: 1
+    path: Assets/Scenes/PostfINAL.unity
+    guid: fa0c38cb1acd5564e9ada59095437294
+  - enabled: 1
+    path: Assets/Scenes/FinalCutscene.unity
+    guid: ceef15e475a97f14283797b88ebb59d8
   m_configObjects: {}
