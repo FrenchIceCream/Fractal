@@ -35,7 +35,7 @@ public class CharMovement : MonoBehaviour
     void Update()
     {
         Movement();
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && IsGrounded())
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && IsGrounded())
             rbody.velocity = jumpVector;
 
         ChangeDir();
